@@ -1,0 +1,59 @@
+﻿@page "/Calculadora"
+@using CalculadoraBlazor.Entidades
+
+<h3>Calcularadora</h3>
+
+<EditForm Model="aritmetica" OnValidSubmit="Calcular">
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+
+    <div class="form-group">
+        <p class="numero1">
+            Primer Numero: <InputNumber @bind-Value="aritmetica.numero1" class="form-control"/>
+        </p>
+        <p class="numero2">
+            Segundo Numero: <InputNumber @bind-Value="aritmetica.numero2" class="form-control" />
+        </p>
+        <p class="suma">
+            La suma es: <InputNumber @bind-Value="aritmetica.resultadoSuma" class="form-control" readonly="true"/>
+        </p>
+        <p class="resta">
+            La resta es: <InputNumber @bind-Value="aritmetica.resultadoResta" class="form-control" readonly="true"/>
+        </p>
+        <p class="multiplicacion">
+            La multiplicación es: <InputNumber @bind-Value="aritmetica.resultadoMultiplicacion" class="form-control" readonly="true"/>
+        </p>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success" @onclick="Calcular">
+            Calcular
+        </button>
+    </div>
+
+</EditForm>
+
+@code {
+
+    Aritmetica aritmetica = new Aritmetica();
+
+    private bool Validar()
+    {
+        bool paso = true;
+
+        
+
+        return paso;
+    }
+
+    private void Calcular()
+    {
+        double auxNumero1 = aritmetica.numero1;
+        double auxNumero2 = aritmetica.numero2;
+        aritmetica.resultadoSuma = auxNumero1 + auxNumero2;
+        aritmetica.resultadoResta = auxNumero1 - auxNumero2;
+        aritmetica.resultadoMultiplicacion = auxNumero1 * auxNumero2;
+
+    }
+
+}
